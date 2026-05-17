@@ -2426,7 +2426,7 @@ private fun AdvancedSettingsImportDialog(
                 )
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "IMPORT",
+                    label = WhiteDnsL10n.btnImport,
                     emphasized = true,
                     enabled = canImport,
                     onClick = {
@@ -3199,7 +3199,7 @@ private fun ConnectionProfilesSettings(
     ProfileTopActionGrid(
         actions = listOf(
             ProfileTopAction(
-                label = "CREATE",
+                label = WhiteDnsL10n.btnCreate,
                 emphasized = true,
                 enabled = canManageProfiles,
                 onClick = {
@@ -3207,7 +3207,7 @@ private fun ConnectionProfilesSettings(
                 },
             ),
             ProfileTopAction(
-                label = "IMPORT",
+                label = WhiteDnsL10n.btnImport,
                 emphasized = false,
                 enabled = canManageProfiles,
                 onClick = {
@@ -3492,7 +3492,7 @@ private fun ResolverProfilesSettings(
     ProfileTopActionGrid(
         actions = listOf(
             ProfileTopAction(
-                label = "CREATE",
+                label = WhiteDnsL10n.btnCreate,
                 emphasized = true,
                 enabled = canChangeProfiles,
                 onClick = { showCreateDialog = true },
@@ -3688,13 +3688,13 @@ private fun SettingProfilesSettings(
     ProfileTopActionGrid(
         actions = listOf(
             ProfileTopAction(
-                label = "CREATE",
+                label = WhiteDnsL10n.btnCreate,
                 emphasized = true,
                 enabled = canManageProfiles,
                 onClick = { showCreateDialog = true },
             ),
             ProfileTopAction(
-                label = "IMPORT",
+                label = WhiteDnsL10n.btnImport,
                 emphasized = false,
                 enabled = canManageProfiles,
                 onClick = { showImportDialog = true },
@@ -4388,7 +4388,7 @@ private fun ConnectionProfileImportDialog(
                 )
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "IMPORT",
+                    label = WhiteDnsL10n.btnImport,
                     emphasized = true,
                     enabled = canImport,
                     onClick = {
@@ -4463,7 +4463,7 @@ private fun ConnectionProfileExportDialog(
                     )
                     CompactActionButton(
                         modifier = Modifier.weight(1f),
-                        label = "COPY",
+                        label = WhiteDnsL10n.btnCopy,
                         emphasized = false,
                         enabled = true,
                         onClick = {
@@ -4477,7 +4477,7 @@ private fun ConnectionProfileExportDialog(
                     )
                     CompactActionButton(
                         modifier = Modifier.weight(1f),
-                        label = "SHARE",
+                        label = WhiteDnsL10n.btnShare,
                         emphasized = true,
                         enabled = true,
                         onClick = {
@@ -6906,7 +6906,7 @@ private fun ResolverRuntimeDialog(
                 )
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "COPY",
+                    label = WhiteDnsL10n.btnCopy,
                     emphasized = true,
                     enabled = resolverText.isNotBlank(),
                     onClick = {
@@ -7562,7 +7562,7 @@ private fun ConnectionLogsBlock(
             )
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 LogActionButton(
-                    label = "COPY",
+                    label = WhiteDnsL10n.btnCopy,
                     onClick = {
                         copyTextToClipboard(
                             context = context,
