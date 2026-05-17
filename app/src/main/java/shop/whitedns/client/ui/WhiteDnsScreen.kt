@@ -672,7 +672,7 @@ private fun ConnectTabContent(
             ) {
                 Text(
                     modifier = Modifier.padding(top = 10.dp),
-                    text = "You need resolvers to connect.",
+                    text = WhiteDnsL10n.resolverRequiredMessage,
                     style = MaterialTheme.typography.bodyMedium.copy(
                         fontSize = 11.sp,
                         color = WhiteDnsPalette.WarningText,
