@@ -1951,7 +1951,7 @@ private fun FooterLink() {
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-            text = "Powered by WhiteDNS",
+            text = WhiteDnsL10n.footerPoweredBy,
             style = MaterialTheme.typography.bodyMedium.copy(
                 fontSize = 10.sp,
                 color = WhiteDnsPalette.Description,
@@ -5623,7 +5623,7 @@ private fun HeaderCard(
                     text = {
                         Column {
                             Text(
-                                text = "Version",
+                                text = WhiteDnsL10n.menuVersion,
                                 style = MaterialTheme.typography.bodyMedium.copy(
                                     fontSize = 10.sp,
                                     color = WhiteDnsPalette.Muted,
@@ -5665,7 +5665,7 @@ private fun HeaderCard(
                     },
                     text = {
                         Text(
-                            text = "App Settings",
+                            text = WhiteDnsL10n.menuAppSettings,
                             style = MaterialTheme.typography.bodyMedium.copy(
                                 fontSize = 13.sp,
                                 color = WhiteDnsPalette.Ink,
@@ -5693,7 +5693,7 @@ private fun HeaderCard(
                     },
                     text = {
                         Text(
-                            text = "Donate",
+                            text = WhiteDnsL10n.menuDonate,
                             style = MaterialTheme.typography.bodyMedium.copy(
                                 fontSize = 13.sp,
                                 color = WhiteDnsPalette.Ink,
@@ -5808,7 +5808,7 @@ private fun DonationDialog(
                 .padding(18.dp),
         ) {
             Text(
-                text = "SUPPORT WHITEDNS",
+                text = WhiteDnsL10n.supportTitle,
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontSize = 14.sp,
                     color = WhiteDnsPalette.Ink,
@@ -5818,7 +5818,7 @@ private fun DonationDialog(
             )
             Spacer(modifier = Modifier.height(WhiteDnsSpacing.sm))
             Text(
-                text = "Donations will be used for new servers and app development.",
+                text = WhiteDnsL10n.supportBody,
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontSize = 11.sp,
                     lineHeight = 16.sp,
@@ -5913,7 +5913,7 @@ private fun NotificationPermissionBanner(onClick: () -> Unit) {
             .padding(14.dp),
     ) {
         Text(
-            text = "VPN NOTIFICATION BLOCKED",
+            text = WhiteDnsL10n.bannerVpnNotificationTitle,
             style = MaterialTheme.typography.bodyMedium.copy(
                 fontSize = 10.sp,
                 color = WhiteDnsPalette.WarningText,
@@ -5923,7 +5923,7 @@ private fun NotificationPermissionBanner(onClick: () -> Unit) {
         )
         Spacer(modifier = Modifier.height(WhiteDnsSpacing.iconSpacing))
         Text(
-            text = "Enable WhiteDNS notifications so Android can keep the full VPN service visible and running in the background.",
+            text = WhiteDnsL10n.bannerVpnNotificationBody,
             style = MaterialTheme.typography.bodyMedium.copy(
                 fontSize = 11.sp,
                 lineHeight = 15.sp,
@@ -5946,7 +5946,7 @@ private fun NotificationPermissionBanner(onClick: () -> Unit) {
             contentAlignment = Alignment.Center,
         ) {
             Text(
-                text = "ENABLE VPN NOTIFICATION",
+                text = WhiteDnsL10n.bannerEnableVpnNotification,
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontSize = 9.sp,
                     color = WhiteDnsPalette.WarningText,
