@@ -105,6 +105,7 @@ interface WhiteDnsStrings {
 
     // Stats
     val statsActiveResolvers: String
+    val statsValidResolvers: String
     val connectionLogsTitle: String
 
     // Profile tabs
@@ -252,7 +253,7 @@ interface WhiteDnsStrings {
     val scanBtnResume: String
     val saveScanNamePlaceholder: String
     fun scanProfileNeedsServer(name: String): String
-    fun saveScanResultsBody(count: Int, scanLabel: String): String
+    fun saveScanResultsBody(resolverCount: Int, scanLabel: String): String
 
     // Scan status labels
     val scanStatusIdle: String
@@ -286,7 +287,7 @@ object EnglishStrings : WhiteDnsStrings {
     override val menuDonate = "Donate"
     override val appSettingsTitle = "App Settings"
     override val supportTitle = "Support"
-    override val supportBody = "For issues or feedback, please contact us"
+    override val supportBody = "Donations will be used for new servers and app development."
     override val footerPoweredBy = "Powered by WhiteDNS"
 
     // Buttons
@@ -345,14 +346,14 @@ object EnglishStrings : WhiteDnsStrings {
     override val verificationCheckingRoute = "Checking route..."
 
     // Banners
-    override val bannerVpnNotificationTitle = "Enable VPN Notification"
-    override val bannerVpnNotificationBody = "Allow notifications for VPN status"
-    override val bannerEnableVpnNotification = "Enable"
-    override val bannerBatteryTitle = "Battery Optimization"
-    override val bannerBatteryBody = "Allow background VPN to prevent system optimization"
-    override val bannerAllowBackgroundVpn = "Allow Background VPN"
-    override val bannerFullVpnWarningTitle = "Full VPN Mode"
-    override val bannerFullVpnWarningBody = "This uses full VPN mode which may impact performance"
+    override val bannerVpnNotificationTitle = "VPN NOTIFICATION BLOCKED"
+    override val bannerVpnNotificationBody = "Enable WhiteDNS notifications so Android can keep the full VPN service visible and running in the background."
+    override val bannerEnableVpnNotification = "ENABLE VPN NOTIFICATION"
+    override val bannerBatteryTitle = "BACKGROUND VPN MAY STOP"
+    override val bannerBatteryBody = "Allow WhiteDNS to ignore battery optimization so the VPN keeps running after you leave the app."
+    override val bannerAllowBackgroundVpn = "ALLOW BACKGROUND VPN"
+    override val bannerFullVpnWarningTitle = "FULL VPN PERFORMANCE WARNING"
+    override val bannerFullVpnWarningBody = "Full VPN routes all device traffic through the DNS tunnel and may be slower or less stable. Proxy Mode is recommended for best performance."
 
     // Setup card
     override val setupTitle = "Setup"
@@ -382,6 +383,7 @@ object EnglishStrings : WhiteDnsStrings {
 
     // Stats
     override val statsActiveResolvers = "Active Resolvers"
+    override val statsValidResolvers = "Valid Resolvers"
     override val connectionLogsTitle = "Connection Logs"
 
     // Profile tabs
@@ -408,7 +410,7 @@ object EnglishStrings : WhiteDnsStrings {
     override val connectionProfileFieldKey = "Server Key"
     override val connectionProfileFieldEncryption = "Encryption"
     override val connectionProfileNamePlaceholder = "Connection name"
-    override val qrUnavailable = "QR code unavailable"
+    override val qrUnavailable = "QR code unavailable for this profile link."
 
     // Resolver profiles
     override val resolverProfilesNoProfiles = "No resolver profiles found."
@@ -434,21 +436,21 @@ object EnglishStrings : WhiteDnsStrings {
     // Advanced settings fields
     override val fieldListenIp = "Listen IP"
     override val fieldListenPort = "Listen Port"
-    override val toggleHttpProxy = "Enable HTTP Proxy"
+    override val toggleHttpProxy = "HTTP Proxy"
     override val fieldHttpPort = "HTTP Port"
-    override val toggleSocks5Auth = "Enable SOCKS5 Auth"
+    override val toggleSocks5Auth = "SOCKS5 Authentication"
     override val fieldSocksUsername = "SOCKS Username"
     override val fieldSocksPassword = "SOCKS Password"
     override val fieldBalancingStrategy = "Balancing Strategy"
-    override val fieldUploadDup = "Upload Duplication"
-    override val fieldDownloadDup = "Download Duplication"
-    override val fieldUploadCompress = "Upload Compression"
-    override val fieldDownloadCompress = "Download Compression"
-    override val toggleBaseEncode = "Enable Base Encoding"
-    override val fieldPingWatchdog = "Ping Watchdog"
-    override val toggleTrafficWarmup = "Enable Traffic Warmup"
+    override val fieldUploadDup = "Upload Dup"
+    override val fieldDownloadDup = "Download Dup"
+    override val fieldUploadCompress = "Upload Compress"
+    override val fieldDownloadCompress = "Download Compress"
+    override val toggleBaseEncode = "Base Encode Data"
+    override val fieldPingWatchdog = "Ping Watchdog (s)"
+    override val toggleTrafficWarmup = "Traffic Warmup"
     override val fieldWarmupProbes = "Warmup Probes"
-    override val fieldKeepaliveSeconds = "Keepalive Seconds"
+    override val fieldKeepaliveSeconds = "Keepalive (s)"
     override val fieldLogLevel = "Log Level"
     override val fieldMinUpload = "Min Upload"
     override val fieldMinDownload = "Min Download"
@@ -460,7 +462,7 @@ object EnglishStrings : WhiteDnsStrings {
     override val fieldLogsRetries = "Logs Retries"
     override val fieldLogsTimeout = "Logs Timeout"
     override val fieldLogsParallel = "Logs Parallel"
-    override val fieldRxTxWorkers = "RxTx Workers"
+    override val fieldRxTxWorkers = "RX/TX Workers"
     override val fieldProcessWorkers = "Process Workers"
     override val fieldTunnelPacketTimeout = "Tunnel Packet Timeout"
     override val fieldIdlePoll = "Idle Poll"
@@ -530,8 +532,8 @@ object EnglishStrings : WhiteDnsStrings {
     override val saveScanNamePlaceholder = "Scan results name"
     override fun scanProfileNeedsServer(name: String): String =
         "$name needs a server route and key."
-    override fun saveScanResultsBody(count: Int, scanLabel: String): String =
-        "Save $count scan results with label '$scanLabel'?"
+    override fun saveScanResultsBody(resolverCount: Int, scanLabel: String): String =
+        "$resolverCount valid resolvers from $scanLabel will be saved as a new resolver profile."
 
     // Scan status labels
     override val scanStatusIdle = "Idle"
@@ -565,7 +567,7 @@ object PersianStrings : WhiteDnsStrings {
     override val menuDonate = "حمایت مالی"
     override val appSettingsTitle = "تنظیمات برنامه"
     override val supportTitle = "پشتیبانی"
-    override val supportBody = "برای مشکلات یا پیشنهادات، لطفاً با ما تماس بگیرید"
+    override val supportBody = "اهدای مال برای سرورهای جدید و توسعه برنامه استفاده خواهد شد."
     override val footerPoweredBy = "توسط WhiteDNS ساخته شده"
 
     // Buttons
@@ -624,14 +626,14 @@ object PersianStrings : WhiteDnsStrings {
     override val verificationCheckingRoute = "بررسی مسیر..."
 
     // Banners
-    override val bannerVpnNotificationTitle = "فعال کردن اطلاع VPN"
-    override val bannerVpnNotificationBody = "اجازه اطلاعات برای وضعیت VPN"
-    override val bannerEnableVpnNotification = "فعال کردن"
-    override val bannerBatteryTitle = "بهینه‌سازی باتری"
-    override val bannerBatteryBody = "اجازه VPN در پس‌زمینه برای جلوگیری از بهینه‌سازی سیستم"
+    override val bannerVpnNotificationTitle = "فعال کردن اعلان VPN"
+    override val bannerVpnNotificationBody = "اجازه اعلان‌ها برای وضعیت VPN"
+    override val bannerEnableVpnNotification = "فعال کردن اعلان VPN"
+    override val bannerBatteryTitle = "VPN در پس‌زمینه ممکن است متوقف شود"
+    override val bannerBatteryBody = "اجازه دهید WhiteDNS بهینه‌سازی باتری را نادیده بگیرد تا VPN بعد از ترک برنامه کار کند."
     override val bannerAllowBackgroundVpn = "اجازه VPN در پس‌زمینه"
-    override val bannerFullVpnWarningTitle = "حالت VPN کامل"
-    override val bannerFullVpnWarningBody = "این حالت VPN کامل است که ممکن است بر عملکرد تأثیر بگذارد"
+    override val bannerFullVpnWarningTitle = "هشدار عملکرد VPN کامل"
+    override val bannerFullVpnWarningBody = "VPN کامل تمام ترافیک دستگاه را از طریق تونل DNS هدایت می‌کند و ممکن است کندتر یا کمتر پایدار باشد. حالت Proxy برای بهترین عملکرد توصیه می‌شود."
 
     // Setup card
     override val setupTitle = "تنظیم"
@@ -661,6 +663,7 @@ object PersianStrings : WhiteDnsStrings {
 
     // Stats
     override val statsActiveResolvers = "رزولورهای فعال"
+    override val statsValidResolvers = "رزولورهای معتبر"
     override val connectionLogsTitle = "لاگ‌های اتصال"
 
     // Profile tabs
@@ -687,7 +690,7 @@ object PersianStrings : WhiteDnsStrings {
     override val connectionProfileFieldKey = "کلید سرور"
     override val connectionProfileFieldEncryption = "رمزگذاری"
     override val connectionProfileNamePlaceholder = "نام اتصال"
-    override val qrUnavailable = "کد QR در دسترس نیست"
+    override val qrUnavailable = "کد QR برای این پیوند پروفایل در دسترس نیست."
 
     // Resolver profiles
     override val resolverProfilesNoProfiles = "هیچ پروفایل رزولور یافت نشد."
@@ -713,21 +716,21 @@ object PersianStrings : WhiteDnsStrings {
     // Advanced settings fields
     override val fieldListenIp = "IP گوش دادن"
     override val fieldListenPort = "پورت گوش دادن"
-    override val toggleHttpProxy = "فعال کردن پروکسی HTTP"
+    override val toggleHttpProxy = "پروکسی HTTP"
     override val fieldHttpPort = "پورت HTTP"
-    override val toggleSocks5Auth = "فعال کردن احراز هویت SOCKS5"
+    override val toggleSocks5Auth = "احراز هویت SOCKS5"
     override val fieldSocksUsername = "نام کاربری SOCKS"
     override val fieldSocksPassword = "رمز عبور SOCKS"
     override val fieldBalancingStrategy = "استراتژی متعادل‌کردن"
-    override val fieldUploadDup = "تکرار آپلود"
-    override val fieldDownloadDup = "تکرار دانلود"
+    override val fieldUploadDup = "آپلود Dup"
+    override val fieldDownloadDup = "دانلود Dup"
     override val fieldUploadCompress = "فشرده‌سازی آپلود"
     override val fieldDownloadCompress = "فشرده‌سازی دانلود"
-    override val toggleBaseEncode = "فعال کردن رمزگذاری پایه"
+    override val toggleBaseEncode = "رمزگذاری داده‌ها"
     override val fieldPingWatchdog = "Ping Watchdog"
-    override val toggleTrafficWarmup = "فعال کردن گرم‌کردن ترافیک"
+    override val toggleTrafficWarmup = "گرم‌کردن ترافیک"
     override val fieldWarmupProbes = "بررسی‌های گرم‌کردن"
-    override val fieldKeepaliveSeconds = "ثانیه‌های Keepalive"
+    override val fieldKeepaliveSeconds = "Keepalive (s)"
     override val fieldLogLevel = "سطح لاگ"
     override val fieldMinUpload = "حداقل آپلود"
     override val fieldMinDownload = "حداقل دانلود"
@@ -739,7 +742,7 @@ object PersianStrings : WhiteDnsStrings {
     override val fieldLogsRetries = "تلاش‌های لاگ"
     override val fieldLogsTimeout = "تایم‌اوت لاگ"
     override val fieldLogsParallel = "لاگ موازی"
-    override val fieldRxTxWorkers = "RxTx کارگران"
+    override val fieldRxTxWorkers = "کارگران RxTx"
     override val fieldProcessWorkers = "کارگران فرایند"
     override val fieldTunnelPacketTimeout = "تایم‌اوت بسته تونل"
     override val fieldIdlePoll = "Idle Poll"
@@ -761,7 +764,7 @@ object PersianStrings : WhiteDnsStrings {
     // Balancing / compression labels
     override val balancingRandom = "تصادفی"
     override val balancingRoundRobin = "دوران کردن"
-    override val balancingLeastLoss = "کمترین خسارت"
+    override val balancingLeastLoss = "کمترین افت"
     override val balancingLowestLatency = "کمترین تاخیر"
     override val compressionOff = "خاموش"
     override val compressionZstd = "Zstd"
@@ -809,8 +812,8 @@ object PersianStrings : WhiteDnsStrings {
     override val saveScanNamePlaceholder = "نام نتایج اسکن"
     override fun scanProfileNeedsServer(name: String): String =
         "$name به مسیر سرور و کلید نیاز دارد."
-    override fun saveScanResultsBody(count: Int, scanLabel: String): String =
-        "ذخیره $count نتیجه اسکن با برچسب '$scanLabel'؟"
+    override fun saveScanResultsBody(resolverCount: Int, scanLabel: String): String =
+        "$resolverCount رزولور معتبر از $scanLabel به عنوان یک پروفایل رزولور جدید ذخیره خواهد شد."
 
     // Scan status labels
     override val scanStatusIdle = "بیکار"
