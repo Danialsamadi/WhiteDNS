@@ -1214,11 +1214,7 @@ private fun ProfilesTabContent(
             )
             Spacer(modifier = Modifier.height(WhiteDnsSpacing.md))
             InfoCard(
-                title = when (selectedProfileTab) {
-                    ProfileTab.CONNECTION -> "CONNECTION PROFILES"
-                    ProfileTab.RESOLVER -> "RESOLVER PROFILES"
-                    ProfileTab.SETTING -> "SETTING PROFILES"
-                },
+                title = profileTabHeader(selectedProfileTab),
             ) {
                 when (selectedProfileTab) {
                     ProfileTab.CONNECTION -> ConnectionProfilesSettings(
@@ -1663,14 +1659,14 @@ private fun ScanSaveAsProfileDialog(
             ) {
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "CANCEL",
+                    label = WhiteDnsL10n.btnCancel,
                     emphasized = false,
                     enabled = true,
                     onClick = onDismiss,
                 )
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "SAVE",
+                    label = WhiteDnsL10n.btnSave,
                     emphasized = true,
                     enabled = canSave,
                     onClick = {
@@ -1868,12 +1864,12 @@ private fun BottomNavigationBar(
                 ) {
                     Icon(
                         imageVector = tab.icon,
-                        contentDescription = tab.label,
+                        contentDescription = tabLabel(tab),
                         tint = color,
                         modifier = Modifier.size(20.dp),
                     )
                     Text(
-                        text = tab.label,
+                        text = tabLabel(tab),
                         style = MaterialTheme.typography.bodyMedium.copy(
                             fontSize = 9.sp,
                             color = color,
@@ -1906,6 +1902,7 @@ private fun ProfileTabSwitch(
     ) {
         ProfileTab.entries.forEach { tab ->
             val selected = selectedTab == tab
+            val tabLabelText = profileTabLabel(tab)
             Box(
                 modifier = Modifier
                     .weight(1f)
@@ -1919,9 +1916,9 @@ private fun ProfileTabSwitch(
                     )
                     .semantics {
                         contentDescription = if (selected) {
-                            context.getString(R.string.cd_profile_tab_selected, tab.label)
+                            context.getString(R.string.cd_profile_tab_selected, tabLabelText)
                         } else {
-                            context.getString(R.string.cd_profile_tab_unselected, tab.label)
+                            context.getString(R.string.cd_profile_tab_unselected, tabLabelText)
                         }
                     }
                     .clickable {
@@ -1932,7 +1929,7 @@ private fun ProfileTabSwitch(
                 contentAlignment = Alignment.Center,
             ) {
                 Text(
-                    text = tab.label,
+                    text = tabLabelText,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.bodyMedium.copy(
@@ -1991,7 +1988,7 @@ private fun ConnectionModeSegmentedControl(
     val haptic = rememberHapticFeedback()
 
     Column(modifier = modifier) {
-        FieldLabel("Mode")
+        FieldLabel(WhiteDnsL10n.fieldMode)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -2060,7 +2057,7 @@ private fun ThemeModeSegmentedControl(
     val haptic = rememberHapticFeedback()
 
     Column(modifier = modifier) {
-        FieldLabel("Theme")
+        FieldLabel(WhiteDnsL10n.fieldTheme)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -2121,7 +2118,7 @@ private fun LanguageModeSegmentedControl(
     val haptic = rememberHapticFeedback()
 
     Column(modifier = modifier) {
-        FieldLabel("Language")
+        FieldLabel(WhiteDnsL10n.fieldLanguage)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -2189,6 +2186,15 @@ private fun profileTabLabel(tab: ProfileTab): String {
         ProfileTab.CONNECTION -> WhiteDnsL10n.profileTabConnection
         ProfileTab.RESOLVER -> WhiteDnsL10n.profileTabResolver
         ProfileTab.SETTING -> WhiteDnsL10n.profileTabSetting
+    }
+}
+
+@Composable
+private fun profileTabHeader(tab: ProfileTab): String {
+    return when (tab) {
+        ProfileTab.CONNECTION -> WhiteDnsL10n.profileTabConnectionHeader
+        ProfileTab.RESOLVER -> WhiteDnsL10n.profileTabResolverHeader
+        ProfileTab.SETTING -> WhiteDnsL10n.profileTabSettingHeader
     }
 }
 
@@ -2413,7 +2419,7 @@ private fun AdvancedSettingsImportDialog(
             ) {
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "CANCEL",
+                    label = WhiteDnsL10n.btnCancel,
                     emphasized = false,
                     enabled = true,
                     onClick = onDismiss,
@@ -3934,14 +3940,14 @@ private fun AdvancedSettingsProfileDialog(
             ) {
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "CANCEL",
+                    label = WhiteDnsL10n.btnCancel,
                     emphasized = false,
                     enabled = true,
                     onClick = onDismiss,
                 )
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "SAVE",
+                    label = WhiteDnsL10n.btnSave,
                     emphasized = true,
                     enabled = canSave,
                     onClick = {
@@ -4195,14 +4201,14 @@ private fun ResolverProfileDialog(
             ) {
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "CANCEL",
+                    label = WhiteDnsL10n.btnCancel,
                     emphasized = false,
                     enabled = true,
                     onClick = onDismiss,
                 )
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "SAVE",
+                    label = WhiteDnsL10n.btnSave,
                     emphasized = true,
                     enabled = canSave,
                     onClick = {
@@ -4375,7 +4381,7 @@ private fun ConnectionProfileImportDialog(
             ) {
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "CANCEL",
+                    label = WhiteDnsL10n.btnCancel,
                     emphasized = false,
                     enabled = true,
                     onClick = onDismiss,
@@ -4450,7 +4456,7 @@ private fun ConnectionProfileExportDialog(
                 ) {
                     CompactActionButton(
                         modifier = Modifier.weight(1f),
-                        label = "CLOSE",
+                        label = WhiteDnsL10n.btnClose,
                         emphasized = false,
                         enabled = true,
                         onClick = onDismiss,
@@ -4490,7 +4496,7 @@ private fun ConnectionProfileExportDialog(
                 Spacer(modifier = Modifier.height(WhiteDnsSpacing.md))
                 CompactActionButton(
                     modifier = Modifier.fillMaxWidth(),
-                    label = "CLOSE",
+                    label = WhiteDnsL10n.btnClose,
                     emphasized = true,
                     enabled = true,
                     onClick = onDismiss,
@@ -4623,14 +4629,14 @@ private fun ConnectionProfileDialog(
             ) {
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "CANCEL",
+                    label = WhiteDnsL10n.btnCancel,
                     emphasized = false,
                     enabled = true,
                     onClick = onDismiss,
                 )
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "SAVE",
+                    label = WhiteDnsL10n.btnSave,
                     emphasized = true,
                     enabled = canSave,
                     onClick = {
@@ -4931,7 +4937,7 @@ private fun DeleteProfileConfirmationDialog(
             ) {
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "CANCEL",
+                    label = WhiteDnsL10n.btnCancel,
                     emphasized = false,
                     enabled = true,
                     onClick = onDismiss,
@@ -5752,7 +5758,7 @@ private fun AppSettingsDialog(
                 .padding(18.dp),
         ) {
             Text(
-                text = "APP SETTINGS",
+                text = WhiteDnsL10n.appSettingsTitle,
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontSize = 14.sp,
                     color = WhiteDnsPalette.Ink,
@@ -5775,7 +5781,7 @@ private fun AppSettingsDialog(
             Spacer(modifier = Modifier.height(WhiteDnsSpacing.lg))
             CompactActionButton(
                 modifier = Modifier.fillMaxWidth(),
-                label = "CLOSE",
+                label = WhiteDnsL10n.btnClose,
                 emphasized = true,
                 enabled = true,
                 onClick = onDismiss,
@@ -6276,14 +6282,14 @@ private fun SplitTunnelAppDialog(
                 )
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "CANCEL",
+                    label = WhiteDnsL10n.btnCancel,
                     emphasized = false,
                     enabled = true,
                     onClick = onDismiss,
                 )
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "SAVE",
+                    label = WhiteDnsL10n.btnSave,
                     emphasized = true,
                     enabled = true,
                     onClick = {
@@ -6424,9 +6430,9 @@ private fun ConnectButton(
     val circleSize = 156.dp
     val outerRingSize = 198.dp
     val label = when (status) {
-        ConnectionStatus.DISCONNECTED -> "CONNECT"
-        ConnectionStatus.CONNECTING -> "CONNECTING"
-        ConnectionStatus.CONNECTED -> "STOP"
+        ConnectionStatus.DISCONNECTED -> WhiteDnsL10n.connectLabel
+        ConnectionStatus.CONNECTING -> WhiteDnsL10n.connectingLabel
+        ConnectionStatus.CONNECTED -> WhiteDnsL10n.stopLabel
     }
     val labelColor = when (status) {
         ConnectionStatus.CONNECTED -> WhiteDnsPalette.WarningText
@@ -6893,7 +6899,7 @@ private fun ResolverRuntimeDialog(
             ) {
                 CompactActionButton(
                     modifier = Modifier.weight(1f),
-                    label = "CLOSE",
+                    label = WhiteDnsL10n.btnClose,
                     emphasized = false,
                     enabled = true,
                     onClick = onDismiss,
