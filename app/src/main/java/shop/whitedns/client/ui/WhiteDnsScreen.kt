@@ -460,6 +460,8 @@ private fun ConnectTabContent(
             HeaderCard(
                 themeMode = settings.themeMode,
                 onThemeModeChange = { onSettingsChange(settings.copy(themeMode = it)) },
+                languageCode = settings.languageCode,
+                onLanguageCodeChange = { onSettingsChange(settings.copy(languageCode = it)) },
             )
 
             Column(
@@ -1197,6 +1199,8 @@ private fun ProfilesTabContent(
         HeaderCard(
             themeMode = uiState.settings.themeMode,
             onThemeModeChange = { onSettingsChange(uiState.settings.copy(themeMode = it)) },
+            languageCode = uiState.settings.languageCode,
+            onLanguageCodeChange = { onSettingsChange(uiState.settings.copy(languageCode = it)) },
         )
         Column(
             modifier = Modifier
@@ -1265,6 +1269,8 @@ private fun LogsTabContent(
         HeaderCard(
             themeMode = uiState.settings.themeMode,
             onThemeModeChange = { onSettingsChange(uiState.settings.copy(themeMode = it)) },
+            languageCode = uiState.settings.languageCode,
+            onLanguageCodeChange = { onSettingsChange(uiState.settings.copy(languageCode = it)) },
         )
         Column(
             modifier = Modifier
@@ -1336,6 +1342,8 @@ private fun ScanTabContent(
         HeaderCard(
             themeMode = uiState.settings.themeMode,
             onThemeModeChange = { onSettingsChange(uiState.settings.copy(themeMode = it)) },
+            languageCode = uiState.settings.languageCode,
+            onLanguageCodeChange = { onSettingsChange(uiState.settings.copy(languageCode = it)) },
         )
         Column(
             modifier = Modifier
@@ -2101,6 +2109,86 @@ private fun ThemeModeSegmentedControl(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun LanguageModeSegmentedControl(
+    languageCode: String,
+    onLanguageCodeChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val haptic = rememberHapticFeedback()
+
+    Column(modifier = modifier) {
+        FieldLabel("Language")
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(12.dp))
+                .background(WhiteDnsPalette.Surface)
+                .border(1.5.dp, WhiteDnsPalette.ControlBorder, RoundedCornerShape(12.dp))
+                .padding(3.dp),
+            horizontalArrangement = Arrangement.spacedBy(3.dp),
+        ) {
+            WhiteDnsOptions.languages.forEach { lang ->
+                val selected = languageCode == lang.value
+                val background by animateColorAsState(
+                    targetValue = if (selected) WhiteDnsPalette.Accent else Color.Transparent,
+                    animationSpec = tween(180),
+                    label = "languageModeSegmentBackground",
+                )
+                val textColor by animateColorAsState(
+                    targetValue = if (selected) WhiteDnsPalette.OnAccent else WhiteDnsPalette.Muted,
+                    animationSpec = tween(180),
+                    label = "languageModeSegmentText",
+                )
+
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clip(RoundedCornerShape(9.dp))
+                        .background(background)
+                        .clickable(enabled = !selected) {
+                            haptic.performLight()
+                            onLanguageCodeChange(lang.value)
+                        }
+                        .padding(horizontal = 6.dp, vertical = 9.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = lang.label,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            fontSize = 10.sp,
+                            color = textColor,
+                            fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
+                            letterSpacing = 0.4.sp,
+                        ),
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun tabLabel(tab: WhiteDnsTab): String {
+    return when (tab) {
+        WhiteDnsTab.PROFILES -> WhiteDnsL10n.tabProfiles
+        WhiteDnsTab.CONNECT -> WhiteDnsL10n.tabConnect
+        WhiteDnsTab.SCAN -> WhiteDnsL10n.tabScan
+        WhiteDnsTab.LOGS -> WhiteDnsL10n.tabLogs
+    }
+}
+
+@Composable
+private fun profileTabLabel(tab: ProfileTab): String {
+    return when (tab) {
+        ProfileTab.CONNECTION -> WhiteDnsL10n.profileTabConnection
+        ProfileTab.RESOLVER -> WhiteDnsL10n.profileTabResolver
+        ProfileTab.SETTING -> WhiteDnsL10n.profileTabSetting
     }
 }
 
@@ -5433,6 +5521,8 @@ private fun RuntimeWorkersSettingsGroup(
 private fun HeaderCard(
     themeMode: String,
     onThemeModeChange: (String) -> Unit,
+    languageCode: String,
+    onLanguageCodeChange: (String) -> Unit,
 ) {
     val context = LocalContext.current
     val haptic = rememberHapticFeedback()
@@ -5619,6 +5709,8 @@ private fun HeaderCard(
         AppSettingsDialog(
             themeMode = themeMode,
             onThemeModeChange = onThemeModeChange,
+            languageCode = languageCode,
+            onLanguageCodeChange = onLanguageCodeChange,
             onDismiss = { showAppSettingsDialog = false },
         )
     }
@@ -5646,6 +5738,8 @@ private fun openWhiteDnsTelegram(context: Context) {
 private fun AppSettingsDialog(
     themeMode: String,
     onThemeModeChange: (String) -> Unit,
+    languageCode: String,
+    onLanguageCodeChange: (String) -> Unit,
     onDismiss: () -> Unit,
 ) {
     Dialog(onDismissRequest = onDismiss) {
@@ -5670,6 +5764,12 @@ private fun AppSettingsDialog(
             ThemeModeSegmentedControl(
                 selectedMode = themeMode,
                 onModeChange = onThemeModeChange,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            LanguageModeSegmentedControl(
+                languageCode = languageCode,
+                onLanguageCodeChange = onLanguageCodeChange,
                 modifier = Modifier.fillMaxWidth(),
             )
             Spacer(modifier = Modifier.height(WhiteDnsSpacing.lg))
