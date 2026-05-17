@@ -272,13 +272,12 @@ fun WhiteDnsScreen(
 }
 
 private enum class WhiteDnsTab(
-    val label: String,
     val icon: ImageVector,
 ) {
-    PROFILES("Profiles", Icons.Filled.Apps),
-    CONNECT("Connect", Icons.Rounded.PowerSettingsNew),
-    SCAN("Scan", Icons.Rounded.Search),
-    LOGS("Logs", Icons.Rounded.Link),
+    PROFILES(Icons.Filled.Apps),
+    CONNECT(Icons.Rounded.PowerSettingsNew),
+    SCAN(Icons.Rounded.Search),
+    LOGS(Icons.Rounded.Link),
 }
 
 private const val ScanWorkerMin = 1
@@ -1844,6 +1843,7 @@ private fun BottomNavigationBar(
                     animationSpec = tween(180),
                     label = "bottomNavColor",
                 )
+                val tabLabelText = tabLabel(tab)
                 Column(
                     modifier = Modifier
                         .weight(1f)
@@ -1851,7 +1851,7 @@ private fun BottomNavigationBar(
                         .background(background)
                         .semantics {
                             contentDescription = context.getString(
-                                R.string.cd_navigate_to_tab, tab.label
+                                R.string.cd_navigate_to_tab, tabLabelText
                             )
                         }
                         .clickable {
@@ -5846,7 +5846,7 @@ private fun DonationDialog(
             Spacer(modifier = Modifier.height(WhiteDnsSpacing.lg))
             CompactActionButton(
                 modifier = Modifier.fillMaxWidth(),
-                label = "CLOSE",
+                label = WhiteDnsL10n.btnClose,
                 emphasized = true,
                 enabled = true,
                 onClick = onDismiss,
