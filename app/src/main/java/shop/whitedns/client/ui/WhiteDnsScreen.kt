@@ -5980,7 +5980,7 @@ private fun BatteryOptimizationBanner(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = "BACKGROUND VPN MAY STOP",
+                text = WhiteDnsL10n.bannerBatteryTitle,
                 modifier = Modifier.weight(1f),
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontSize = 10.sp,
@@ -6009,7 +6009,7 @@ private fun BatteryOptimizationBanner(
         }
         Spacer(modifier = Modifier.height(WhiteDnsSpacing.iconSpacing))
         Text(
-            text = "Allow WhiteDNS to ignore battery optimization so the VPN keeps running after you leave the app.",
+            text = WhiteDnsL10n.bannerBatteryBody,
             style = MaterialTheme.typography.bodyMedium.copy(
                 fontSize = 11.sp,
                 lineHeight = 15.sp,
@@ -6032,7 +6032,7 @@ private fun BatteryOptimizationBanner(
             contentAlignment = Alignment.Center,
         ) {
             Text(
-                text = "ALLOW BACKGROUND VPN",
+                text = WhiteDnsL10n.bannerAllowBackgroundVpn,
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontSize = 9.sp,
                     color = WhiteDnsPalette.WarningText,
@@ -6066,7 +6066,7 @@ private fun FullVpnPerformanceWarning(onDismiss: () -> Unit) {
         )
         Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = "FULL VPN PERFORMANCE WARNING",
+                text = WhiteDnsL10n.bannerFullVpnWarningTitle,
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontSize = 9.sp,
                     color = WhiteDnsPalette.WarningText,
@@ -6076,7 +6076,7 @@ private fun FullVpnPerformanceWarning(onDismiss: () -> Unit) {
             )
             Spacer(modifier = Modifier.height(WhiteDnsSpacing.xs))
             Text(
-                text = "Full VPN routes all device traffic through the DNS tunnel and may be slower or less stable. Proxy Mode is recommended for best performance.",
+                text = WhiteDnsL10n.bannerFullVpnWarningBody,
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontSize = 10.sp,
                     lineHeight = 14.sp,
